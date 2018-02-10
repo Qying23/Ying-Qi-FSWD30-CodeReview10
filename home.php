@@ -14,8 +14,13 @@
 
 <html> 
 <head> 
-<title>Media List</title> 
+<title>Media List</title>
 <style>
+	html{
+	      background-color:#EFF8FB;
+	    }
+
+
 	table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -23,15 +28,24 @@
 	}
 
 	td, th {
-	    border: 1px solid #dddddd;
+	    border: 1px solid black;
 	    text-align: left;
 	    padding: 8px;
 	    width: 20%;
+	    background-color: white;
+	    text-align: center;
+	}
+	th{
+		color: grey;
+	}
+	img{
+		width: 120px;
 	}
 
-	tr:nth-child(even) {
+	h1{
+		color: black;
+		padding: 40px;
 
-	    background-color: #dddddd;
 	}
 </style>
 </head> 
@@ -45,23 +59,26 @@ $tabelle = new mysqli('localhost','root','', 'cr10_Ying_Qi_biglibrary');
 	   print "<h1>Unable to Connect to MySQL</h1>";
 	}
 
-$sql = "SELECT book_id, title, ISBN_code, published_date FROM Book";
+$sql = "SELECT image, book_id, title, ISBN_code, published_date FROM Book";
 $result = mysqli_query($tabelle, $sql);
 
     echo "
 			<h1>Books</h1>
     		<table>
 			  <tr>
+			  	<th>Image</th>
 			    <th>book_id</th>
 			    <th>Title</th>
 			    <th>published_date</th>
 			    <th>ISBN_code</th>
-			    <th>Status</th>
 			  </tr>";
 	
 while($row = mysqli_fetch_assoc($result)) {
 
 	echo     "<tr>
+				<td>
+					<img src='". $row["image"] ."'>
+				</td>	
 			    <td>". $row["book_id"] ."</td>
 			    <td>". $row["title"] ."</td>
 			 	<td>". $row["published_date"]." </td>
@@ -85,23 +102,26 @@ $tabelle = new mysqli('localhost','root','', 'cr10_Ying_Qi_biglibrary');
 	   print "<h1>Unable to Connect to MySQL</h1>";
 	}
 
-$sql = "SELECT dvd_id, title, ISBN_code, actor FROM DVD";
+$sql = "SELECT image, dvd_id, title, ISBN_code, actor FROM DVD";
 $result = mysqli_query($tabelle, $sql);
 
     echo "
 			<h1>DVD</h1>
     		<table>
 			  <tr>
+			  	<th>Image</th>
 			    <th>DVD_id</th>
 			    <th>Title</th>
 			    <th>Actor</th>
 			    <th>ISBN_code</th>
-			    <th>Status</th>
 			  </tr>";
 	
 while($row = mysqli_fetch_assoc($result)) {
 
 	echo     "<tr>
+				<td>
+					<img src='". $row["image"] ."'>
+				</td>
 			    <td>". $row["dvd_id"] ."</td>
 			    <td>". $row["title"] ."</td>
 			    <td>". $row["actor"]." </td>
@@ -125,23 +145,26 @@ $tabelle = new mysqli('localhost','root','', 'cr10_Ying_Qi_biglibrary');
 	   print "<h1>Unable to Connect to MySQL</h1>";
 	}
 
-$sql = "SELECT dvd_id, title, ISBN_code, artist FROM CD";
+$sql = "SELECT image, cd_id, title, ISBN_code, artist FROM CD";
 $result = mysqli_query($tabelle, $sql);
 
     echo "
 			<h1>CD</h1>
     		<table>
 			  <tr>
+				<th>Image</th>
 			    <th>CD_id</th>
 			    <th>Title</th>
 			    <th>Artist</th>
 			    <th>ISBN_code</th>
-			    <th>Status</th>
 			  </tr>";
 	
 while($row = mysqli_fetch_assoc($result)) {
 
 	echo     "<tr>
+				<td>
+					<img src='". $row["image"] ."'>
+				</td>
 			    <td>". $row["cd_id"] ."</td>
 			    <td>". $row["title"] ."</td>
 			    <td>". $row["artist"]." </td>
@@ -158,5 +181,3 @@ echo "</table>";
 ?> 
 </body> 
 </html>
-
-<?php ob_end_flush(); ?>

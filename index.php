@@ -49,15 +49,21 @@
 <html>
 	<head>
 		<title>Login & Registration System</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+		<!-- Latest compiled and minified CSS -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	    <!-- Optional theme -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- font -->
+		<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes" rel="stylesheet">
 		 <style>
 	    html{
 	      background-color:#EFF8FB;
-	    }
-
-	    input{
-	    	width: 250px;
-	    	height: 30px;
-	    	border-radius: 5px;
 	    }
 
 	    button{
@@ -70,36 +76,41 @@
 	</head>
 <body>
 	
-	<div>
-		 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+	<div class="container">
+		<div class="row">
+			
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
 
-	    <h2>Sign In.</h2>
+		    <h2>Sign In.</h2>
 
-	    <hr />
+		    <hr />
 
-	    <?php
-	   		if ( isset($errMSG) ) {
-				echo $errMSG; 				//php open and close?
-	   		}
-	   	?>
+		    <?php
+		   		if ( isset($errMSG) ) {
+					echo $errMSG; 				//php open and close?
+		   		}
+		   	?>
 
-	    <input type="email" name="email" class="form-control" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
+		    <input type="email" name="email" class="form-control" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
 
-		<span class="text-danger"><?php echo $emailError; ?></span>
+			<span class="text-danger"><?php echo $emailError; ?></span>
 
-		<input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15" />
-		
-		<span class="text-danger"><?php echo $passError; ?></span>
+			<input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15" />
+			
+			<span class="text-danger"><?php echo $passError; ?></span>
 
-		<hr />
+			<hr />
 
-		<button type="submit" name="btn-login">Sign In</button>
+			<button type="submit" name="btn-login">Sign In</button>
 
-	    <hr />
+		    <hr />
 
-		<a href="register.php">Sign Up Here...</a>
+			<a href="register.php">Sign Up Here...</a>
 
-    </form>
+	    	</form>
+			
+		</div>
+		 
 	</div>
    
 
