@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 10. Feb 2018 um 13:53
+-- Erstellungszeit: 12. Feb 2018 um 11:28
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.1
 
@@ -87,25 +87,25 @@ INSERT INTO `Book` (`book_id`, `title`, `image`, `description`, `ISBN_code`, `pu
 CREATE TABLE `CD` (
   `cd_id` int(11) NOT NULL,
   `title` varchar(55) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `Artist` varchar(55) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `ISBN_code` int(11) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `published_date` date DEFAULT NULL,
   `fk_size_id` int(11) DEFAULT NULL,
   `fk_status_id` int(11) DEFAULT NULL,
   `fk_publisher_id` int(11) DEFAULT NULL,
-  `fk_genre_id` int(11) DEFAULT NULL,
-  `Artist` varchar(55) DEFAULT NULL
+  `fk_genre_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `CD`
 --
 
-INSERT INTO `CD` (`cd_id`, `title`, `image`, `description`, `ISBN_code`, `published_date`, `fk_size_id`, `fk_status_id`, `fk_publisher_id`, `fk_genre_id`, `Artist`) VALUES
-(1, 'The Very Best of Mozart', 'https://lastfm-img2.akamaized.net/i/u/ar0/47f75dea288849b4c90d0dcbc09a3cc5', 'Musik of Mozart', 67565, '2002-01-01', 3, 3, 1, 12, 'Mozart'),
-(2, '8701', 'https://images-na.ssl-images-amazon.com/images/I/71qElptIaPL._SL1500_.jpg', 'nice Songs', 987645, '2001-08-07', 3, 3, 1, 13, 'Usher'),
-(3, 'ABBA: Gold - Greatest Hits', 'https://images-na.ssl-images-amazon.com/images/I/51WHX26rRgL._SY355_.jpg', 'Songs', 12345, '2002-01-01', 1, 1, 1, 14, ' Agnetha Fältskog , Björn Ulvaeus, Anni-Frid Lyngstad');
+INSERT INTO `CD` (`cd_id`, `title`, `Artist`, `description`, `ISBN_code`, `image`, `published_date`, `fk_size_id`, `fk_status_id`, `fk_publisher_id`, `fk_genre_id`) VALUES
+(1, 'The Very Best of Mozart', 'Mozart', 'Musik of Mozart', 67565, 'https://lastfm-img2.akamaized.net/i/u/ar0/47f75dea288849b4c90d0dcbc09a3cc5', '2002-01-01', 3, 3, 1, 12),
+(2, '8701', 'Usher', 'nice Songs', 987645, 'https://images-na.ssl-images-amazon.com/images/I/71qElptIaPL._SL1500_.jpg', '2001-08-07', 3, 3, 1, 13),
+(3, 'ABBA: Gold - Greatest Hits', ' Agnetha Fältskog , Björn Ulvaeus, Anni-Frid Lyngstad', 'Songs', 12345, 'https://images-na.ssl-images-amazon.com/images/I/51WHX26rRgL._SY355_.jpg', '2002-01-01', 1, 3, 1, 14);
 
 -- --------------------------------------------------------
 
@@ -250,17 +250,18 @@ CREATE TABLE `Users` (
   `birthday` date DEFAULT NULL,
   `fk_dvd_id` int(11) DEFAULT NULL,
   `fk_cd_id` int(11) DEFAULT NULL,
-  `fk_book_id` int(11) DEFAULT NULL
+  `fk_book_id` int(11) DEFAULT NULL,
+  `user_password` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `Users`
 --
 
-INSERT INTO `Users` (`user_id`, `firstName`, `lastName`, `adress`, `email`, `birthday`, `fk_dvd_id`, `fk_cd_id`, `fk_book_id`) VALUES
-(1, 'Tobias', 'Moor', 'steg 9', 't.moor@gmx.com', '1980-10-11', 2, 3, 1),
-(2, 'Honor', 'Smith', 'Gentzgasse 19/21', 'smith003@gmail.com', '1960-03-21', 3, 1, 9),
-(3, 'Olivia', 'Schau', 'Augasse 65/1/6', 'o.schau@aon.com', '1988-06-20', 1, 2, 6);
+INSERT INTO `Users` (`user_id`, `firstName`, `lastName`, `adress`, `email`, `birthday`, `fk_dvd_id`, `fk_cd_id`, `fk_book_id`, `user_password`) VALUES
+(1, 'Tobias', 'Moor', 'steg 9', 't.moor@gmx.com', '1980-10-11', 2, 3, 1, NULL),
+(2, 'Honor', 'Smith', 'Gentzgasse 19/21', 'smith003@gmail.com', '1960-03-21', 3, 1, 9, NULL),
+(3, 'Olivia', 'Schau', 'Augasse 65/1/6', 'o.schau@aon.com', '1988-06-20', 1, 2, 6, NULL);
 
 --
 -- Indizes der exportierten Tabellen

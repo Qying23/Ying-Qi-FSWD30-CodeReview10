@@ -51,34 +51,44 @@
 		<title>Login & Registration System</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 
-		<!-- Latest compiled and minified CSS -->
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	    <!-- Optional theme -->
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<!-- font -->
-		<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes" rel="stylesheet">
+  		<link href="https://fonts.googleapis.com/css?family=Exo+2|Grand+Hotel|Libre+Franklin|Sacramento" rel="stylesheet">
+    	<link rel="stylesheet" type="text/css" href="style.css">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 		 <style>
-	    html{
-	      background-color:#EFF8FB;
-	    }
-
-	    button{
-	    	width: 90px;
-	    	height: 25px;
-	    	border-radius: 5px;
-	    }
+	
+	    body{
+    background-image: url("http://www.maria-laach.de/assets/components/phpthumbof/cache/jesuitenbibliothek_158.d91648d5792bcc59a9e337e4070c4934.jpg");
+  }
+  .reg{
+      background-color: rgba(255,255,255,0.6);
+      padding: 10%;
+      margin-top: 30px;
+    }
+     h1{
+    color: black;
+    padding: 40px;
+    text-align: center;
+  }
 
 	  </style>
 	</head>
 <body>
-	
-	<div class="container">
-		<div class="row">
-			
+	<header>
+      <div class="navbar navbar-expand-md bg-info navbar-dark">
+      <a class="navbar-brand name" href="media.html" >
+        <h1>the Big Library</h1>
+      </a>
+    </div>
+
+    </header><!-- /header -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-6 offset-6 reg">
+        
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
 
 		    <h2>Sign In.</h2>
@@ -101,17 +111,22 @@
 
 			<hr />
 
-			<button type="submit" name="btn-login">Sign In</button>
+			<button class="btn btn-block btn-warning" type="submit" name="btn-login">Sign In</button>
 
 		    <hr />
 
 			<a href="register.php">Sign Up Here...</a>
 
 	    	</form>
-			
+			</div>
 		</div>
 		 
 	</div>
+	<footer class="bg-info">
+      
+      <center>copyright by Ying Qi 2018</center>
+      
+    </footer>
    
 
 </body>
