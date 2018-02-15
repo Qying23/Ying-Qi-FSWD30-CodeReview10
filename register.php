@@ -16,10 +16,13 @@
 
  
   // sanitize user input to prevent sql injection
+  $name = trim($_POST['name']);
+  $name = strip_tags($name);
+  $name = htmlspecialchars($name);
 
-  $fistName = trim($_POST['fistName']);
-  $fistName = strip_tags($fistName);
-  $fistName = htmlspecialchars($fistName);
+  $firstName = trim($_POST['firstName']);
+  $firstName = strip_tags($firstName);
+  $firstName = htmlspecialchars($firstName);
 
   $lastName = trim($_POST['lastName']);
   $lastName = strip_tags($lastName);
@@ -33,6 +36,19 @@
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
 
+  // basic username validation
+  if (empty($name)) {
+
+   $error = true;
+   $nameError = "Please enter your username.";
+  } else if (strlen($name) < 1) {
+   $error = true;
+   $nameError = "Name must have atleat 1 characters.";
+  } else if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
+   $error = true;
+   $nameError = "Name must contain alphabets and space.";
+  }
+
   // basic firstname validation
   if (empty($firstName)) {
 
@@ -41,10 +57,9 @@
   } else if (strlen($firstName) < 1) {
    $error = true;
    $firstNameError = "firstname must have atleat 1 characters.";
-  // } else if (!preg_match("/^[a-zA-Z ]+$/",$firstName)) {
-  //  $error = true;
-  //  $firstNameError = "firstname must contain alphabets and space.";
-  // 
+   } else if (!preg_match("/^[a-zA-Z ]+$/",$firstName)) {
+    $error = true;
+    $firstNameError = "firstname must contain alphabets and space."; 
  } else {
     $error = false;
     $firstNameError = "";
@@ -58,12 +73,9 @@
   } else if (strlen($lastName) < 1) {
    $error = true;
    $lastNameError = "Name must have atleat 1 characters.";
-  //} else if (!preg_match("/^[a-zA-Z ]+$/",$lastName)) {
-  // $error = true;
-  // $lastNameError = "Name must contain alphabets and space.";
-  } else {
-    $error = false;
-    $lastNameError = "";
+  } else if (!preg_match("/^[a-zA-Z ]+$/",$lastName)) {
+   $error = true;
+   $lastNameError = "Name must contain alphabets and space.";
   }
 
   //basic email validation
@@ -104,7 +116,7 @@
   // if there's no error, continue to signup
   if( !$error ) {
 
-   $query = "INSERT INTO Users(firstName,lastName,email,user_password) VALUES('$firstName,lastName','$email','$password')";
+   $query = "INSERT INTO Users(username, firstName,lastName,email,user_password) VALUES('$name','$firstName','$lastName','$email','$password')";
 
    $res = mysqli_query($conn, $query);
 
@@ -113,8 +125,7 @@
     $errTyp = "success";
     $errMSG = "Successfully registered, you may login now";
 
-    unset($firstName);
-    unset($lastName);
+    unset($name);
     unset($email);
     unset($pass);
 
@@ -123,12 +134,10 @@
     $errTyp = "danger";
     $errMSG = "Something went wrong, try again later...";
 
+}
    }
 
   }
-
-
- }
 
 ?>
 
@@ -197,20 +206,19 @@
                        </div>
                 <?php
              }
-             ?>
+             ?> 
+
+                <input type="text" name="name" class="form-control" placeholder="Enter Name" maxlength="50" value="<?php echo $name ?>" />
+                  <span class="text-danger"><?php echo $nameError; ?></span>
     
                  <input type="text" name="firstName" class="form-control" placeholder="Enter firstName" maxlength="50" value="<?php echo $firstName ?>" />
-
                     <span class="text-danger"><?php echo $firstNameError; ?></span>
 
                  <input type="text" name="lastName" class="form-control" placeholder="Enter lastName" maxlength="50" value="<?php echo $lastNamen ?>" />
-
                     <span class="text-danger"><?php echo $lastNameError; ?></span>
 
 
                  <input type="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40" value="<?php echo $email ?>" />
-
-         
                     <span class="text-danger"><?php echo $emailError; ?></span>
              
 
